@@ -8,15 +8,42 @@ const listaPacientes = document.getElementById("listaPacientes")
 cadPaciente.addEventListener("click", () => {
     modalCadPaciente.showModal()
 })
+
+const nome = document.getElementById("name")
+const telefone = document.getElementById("telefone")
+const cpf = document.getElementById("cpf")
+const dataNasc = document.getElementById("dataNasc")
+const fotoPac = document.getElementById("fotoPac")
+
+
+telefone.addEventListener('keypress', () => {
+    let telefoneLength = telefone.value.length
+
+    if (telefoneLength === 0) {
+        telefone.value += '('
+    }
+    else if (telefoneLength === 3) {
+        telefone.value += ') 9'
+    }
+    else if (telefoneLength === 10) {
+        telefone.value += '-'
+    }
+    
+})
+
+cpf.addEventListener('keypress', () => {
+    let cpfLength = cpf.value.length
+
+    if (cpfLength == 3 || cpfLength == 7) {
+        cpf.value += '.'
+    } else if (cpfLength === 11) {
+        cpf.value += '-'
+    }
+})
+
 // botao de clique para envio de paciente
 btnEnviarPac.addEventListener("click", (e) => {
     e.preventDefault()
-
-    const nome = document.getElementById("name")
-    const telefone = document.getElementById("telefone")
-    const cpf = document.getElementById("cpf")
-    const dataNasc = document.getElementById("dataNasc")
-    const fotoPac = document.getElementById("fotoPac")
 
     const Paciente = {
         "name": nome.value,
@@ -45,18 +72,36 @@ let lista = ''
 fetch("http://localhost:5566/pacients").then((resposta) => {
     resposta.json().then((dados) => {
         dados.forEach((paciente) => {
-            // console.log(paciente.name)
+
+            const formatarCpfDoPaciente = () => {
+                const cpfDoPaciente = paciente.identifier
+
+                cpfDoPaciente[3].length += "."
+                
+                return cpfDoPaciente
+            }
+
+            const cpfFormatado = formatarCpfDoPaciente();
+            
             lista += 
             `<div class="pacienteUnidade">
             <p>${paciente.name}</p>
             <p>${paciente.birthdate}</p>
-            <p>${paciente.identifier}</p>
+            <p>${cpfFormatado}</p>            
             <p>${paciente.phone_number}</p>
             <p>Não atendido</p>
-            <button class="btnAtenderPaciente"><a href="paginaDeAtendimento.html"> => </a></button>
+            <button class="btnAtenderPaciente"><a> => </a></button>
             </div>`
 
             listaPacientes.innerHTML = lista
+
+            const AtenderPacintes = document.querySelectorAll(".btnAtenderPaciente")
+
+            AtenderPacintes.forEach((atenderPaciente, index) => {
+                atenderPaciente.addEventListener("click", () => {
+                    console.log(dados[index].id)
+                });
+            })
         });
     })
 })

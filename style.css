@@ -142,6 +142,7 @@
     width: 100%;
     height: 35px;
     font-size: .85em;
+    text-transform: capitalize;
 }
 
 .btnEnviarPac {
@@ -172,7 +173,7 @@
     padding: 1.5% 1%;
     gap: 8px;
     overflow-y: auto;
-    user-select: none;
+    /* user-select: none; */
 }
 
 .pacienteUnidade {
