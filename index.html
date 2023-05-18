@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIte multintegrada</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h2>Teste multintegrada</h2>
+        </header>
+        <main class="main">
+            <div class="divBtnCadPaciente">
+                <button id="cadPaciente" class="cadPaciente">Cadastrar Paciente</button>
+                <dialog class="modalCadPaciente" id="modalCadPaciente">
+                    <h3>Cadastrar Paciente</h3>
+                    <form class="formCadPaciente" method="post">
+                        <div>
+                            <label for="name" class="labelCad">Nome completo</label>
+                            <input type="text" id="name" name="name" class="inputModalCad" placeholder="Digite seu nome...">
+                        </div>
+
+                        <div>
+                            <label for="telefone" class="labelCad">Número de celular</label>
+                            <input type="tel" id="telefone" name="telefone" class="inputModalCad" placeholder="Digite seu telefone...">
+                        </div>
+
+                        <div>
+                            <label for="cpf" class="labelCad">Número do CPF</label>
+                            <input type="number" id="cpf" name="cpf" class="inputModalCad" placeholder="Digite seu CPF...">
+                        </div>
+
+                        <div>
+                            <label for="dataNasc" class="labelCad">Data de nascimento</label>
+                            <input type="date" id="dataNasc" name="dataNasc" class="inputModalCad"
+                                placeholder="Digite sua data de nascimento...">
+                        </div>
+
+                        <div>
+                            <label for="fotoPac" class="labelCad">Foto do paciente</label>
+                            <input type="file" id="fotoPac" name="fotoPac" class="inputModalCad">
+                        </div>
+
+                        <button type="submit" class="btnEnviarPac" id="btnEnviarPac">Enviar</button>
+                    </form>
+                </dialog>
+            </div>
+            <div class="listaPacientes" id="listaPacientes"></div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
